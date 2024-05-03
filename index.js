@@ -1,20 +1,20 @@
 const moviesTable = document.getElementById("moviesTable");
 
-// Завантажте дані JSON
+
 fetch('data.json')
     .then(response => response.json())
     .then(moviesData => {
-        // Відобразіть дані в таблиці
+       
         displayMovies(moviesData);
         
-        // Додайте обробники подій для кнопок редагування та видалення
+        
         moviesTable.addEventListener("click", function(event) {
             if (event.target.classList.contains("edit-btn")) {
-                // Реагування на кнопку редагування
+                
                 const movieId = event.target.getAttribute("data-id");
                 editMovie(movieId, moviesData);
             } else if (event.target.classList.contains("delete-btn")) {
-                // Реагування на кнопку видалення
+                
                 const movieId = event.target.getAttribute("data-id");
                 deleteMovie(movieId, moviesData);
             }
@@ -23,7 +23,7 @@ fetch('data.json')
 
 function displayMovies(moviesData) {
     const tbody = moviesTable.querySelector("tbody");
-    tbody.innerHTML = ""; // Очистити попередні дані
+    tbody.innerHTML = ""; 
 
     moviesData.movies.forEach(movie => {
         const row = document.createElement("tr");
@@ -41,7 +41,7 @@ function displayMovies(moviesData) {
     });
 }
 
-// Функція для видалення фільму
+
 function deleteMovie(id, moviesData) {
     moviesData.movies = moviesData.movies.filter(movie => movie.id !== parseInt(id));
     displayMovies(moviesData);
